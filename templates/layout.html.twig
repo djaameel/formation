@@ -1,0 +1,97 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="">Boutique</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('app_produits') }}">produits</a>
+					</li>
+
+					{% if app.user %} 
+					{# si l'utilisateur est connecté #}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+						</li>
+						<li class="nav-item text-right">
+							<a class="nav-link" href="{{ path('app_commandes') }}">Mes commandes</a>
+						</li>
+					{% else %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+						</li>
+					{% endif %}
+						<li class="nav-item text-right">
+							<a class="nav-link" href="{{ path('app_panier_view') }}">Panier</a>
+						</li>
+					{% if app.user and is_granted('ROLE_ADMIN') %}
+					
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Admin
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+							<li>
+								<a class="dropdown-item" href="">
+									Ajout d'un Produit
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="">Ajout categorie</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="">Gestion categories</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="">
+									Gestion Produits</a>
+							</li>
+						</ul>
+					</li>
+					{% endif %}
+					
+				</ul>
+			</div>
+
+			<h6> Bonjour {% if app.user %} {{app.user.nom ~ ' ' ~ app.user.prenom}}  {% endif %}
+			 </h6>
+		</div>
+	</nav>
+
+<main class="container mt-3 mb-5">
+
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success text-center">
+			{{message}}
+		</div>	
+	{% endfor %}
+
+	{% for message in app.flashes('error') %}
+		<div class="alert alert-danger text-center">
+			{{message}}
+		</div>	
+	{% endfor %}
+
+    {% block content %}
+        {# ce block reste vide dans le layout, c'est la ou sera écrit le contenu propre à chaque page #}
+    {% endblock %}
+</main>
+
+<footer class="fixed-bottom bg-dark">
+    <div class="text-center text-white">
+        <p> &copy; tous droits reservés </p>
+    </div>
+</footer>
+
+{% endblock %}

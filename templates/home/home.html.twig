@@ -1,0 +1,40 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Voici nos derniers produits </h1>
+</div>
+
+<div class="justify-content-center">
+    {% for produit in produits %}
+        <div class="row d-flex justify-content-center">
+            <div class="col-offset-3 col-6 card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-6">
+                        <img class="img-fluid rounded-start" src="{{ asset('photos/produit/' ~ produit.photo) }}" alt="{{ produit.photo }}">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body text-center align-self-center">
+                            <h4 class="card-title">
+                                <a class="text-decoration-none text-success" href="{{ path('app_produit', {id: produit.id}) }}">{{produit.titre}}</a>
+                            </h4>
+                            
+                            {% if produit.categorie %}
+                                <h6>categorie : {{ produit.categorie.nom }}</h6>
+                            {% endif %}
+									
+                            <h5>couleur : {{produit.couleur}}</h5>
+                            <h5>taille : {{produit.taille}}</h5>
+                            <h5>il en reste {{produit.stock}}</h5>
+                            <h5>prix :
+                                <strong>{{produit.prix}}€ </strong>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

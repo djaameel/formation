@@ -1,0 +1,23 @@
+1) créez un controller ArticleController
+2) créez une méthode allArticles() qui permet de recuperer tous les articles puis les afficher sur la page allArticle.html.twig
+
+
+----------------------------------------------------------------------------
+
+
+1) Créez une Entité Categorie (nom,slug)
+2) effectuez la migration
+3) créez le controller CategorieController
+4) créez un form pour Categorie
+5) effectuez les traitements (ajout,edit,supprimer) en prenant soin d'afficher les categories dans un tableau html aprés avoir fait l'ajout
+
+
+
+1) créez l'entité Commentaire (contenu, dateDeCreation)
+2) faites en sorte de pouvoir mettre un commentaire sous un produits dans la page oneProduct.html.twig
+3) affichez les commentaires de chaque produit
+
+
+
+1)Creer une page qui permet à un utilisateur de voir la liste de ses commandes
+2) En cliquant sur l'une des commandes affichez le detail de celle ci dans un tableau html

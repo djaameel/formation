@@ -1,0 +1,57 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Hello ArticleController!{% endblock %}
+
+{% block content %}
+
+   <div class=" justify-content-center text-center">
+		<ul class="list-group">
+			<a class="text-decoration-none" href="{{ path('app_produits') }}">
+				<li class="list-group-item btn btn-primary text-center"> All </li>
+			</a>
+			{% for categorie in categories %}
+				<a class="text-decoration-none" href="{{ path('app_produits_categorie', {slug: categorie.slug}) }}">
+					<li class="list-group-item btn btn-primary text-center"> {{ categorie.nom }} </li>
+				</a>
+			{% endfor %}
+		</ul>
+
+		<h4>liste des produits</h4>
+			{% for produit in produits %}
+				<div class="row justify-content-center">
+					<div class="col card mb-3 " style="max-width: 800px;">
+
+						<div class="container">
+							<a class="btn btn-primary" style="text-decoration: none" href="">édit</a>
+							<a class="btn btn-danger" href="{{ path('app_delete_produit', {id: produit.id}) }}" onClick="return confirm('êtes vous sûr de vouloir supprimer le produit ?')">delete</a>
+						</div>
+						<div class="row g-0">
+
+							<div class="col-md-6 text-center">
+								<img src="{{ asset('photos/produit/' ~ produit.photo) }}" class="img-fluid rounded-start" alt="{{ produit.titre }}">
+							</div>
+
+							<div class="col-md-6">
+								<div class="card-body text-center">
+									<h4 class="card-title">
+										<a href="{{ path('app_produit', {id: produit.id})}}">{{ produit.titre }}</a>
+									</h4>
+									{% if produit.categorie %}
+										<h6>categorie : {{ produit.categorie.nom }}</h6>
+									{% endif %}
+									
+
+									<h5>couleur : {{ produit.couleur }}</h5>
+									<h5>taille :{{ produit.taille }}</h5>
+									<h5>il en reste {{ produit.stock }}</h5>
+									<h5>prix :
+										<strong>{{ produit.prix }}€</strong>
+									</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+	</div>
+{% endblock %}

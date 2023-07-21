@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Mes Commandes{% endblock %}
+
+{% block content %}
+    <div class="text-center">
+        <h3>Liste de vos commandes :</h3>
+        <ul>
+            {% for commande in app.user.commandes %}
+            <a href="{{ path('app_commande_details', {'id': commande.id}) }}" class="text-decoration-none">
+                <li>commande n°{{ commande.id }}</li>
+            </a>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

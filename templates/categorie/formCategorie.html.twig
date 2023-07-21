@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}form categorie{% endblock %}
+
+{% block content %}
+
+    {% if app.request.get('_route') == "app_add_categorie" %}
+        <h4>ajout d'une categorie :</h4>
+    {% else %}
+        <h4>modification de la categorie : {{ categorie.nom }}</h4>
+    {% endif %}
+    
+
+    {{ form(formCategorie) }}
+{% endblock %}

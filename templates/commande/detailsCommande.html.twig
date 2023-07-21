@@ -1,0 +1,21 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+    <h2> details de la commande : {{commande.id}} </h2>
+
+    <table class="table">
+        <tr>
+            <th> Titre </th>
+            <th>Quantité </th>
+            <th>s/total</th>
+        </tr
+        {% for commandeDetail in commande.commandeDetails %}
+            <tr>
+                <td>{{commandeDetail.produit.titre }}</td>
+                <td>{{commandeDetail.quantite }}</td>
+                <td>{{commandeDetail.prix }}</td>
+            </tr>
+        {% endfor %}>
+    </table>
+
+{% endblock %}

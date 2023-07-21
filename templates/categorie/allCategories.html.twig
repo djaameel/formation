@@ -1,0 +1,23 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+    <h4>Liste des categories</h4>
+
+    <table class="table text-center">
+        <tr>
+            <th>Nom</th>
+            <th>Slug</th>
+            <th>Action</th>
+        </tr>
+        {% for categorie in categories %}    
+            <tr>
+                <td>{{categorie.nom }}</td>
+                <td>{{categorie.slug }}</td>
+                <td>
+                    <a class="btn btn-primary" style="text-decoration: none" href="{{ path('app_update_categories', {id: categorie.id}) }}">édit</a>
+					<a class="btn btn-danger" href="{{ path('app_delete_categories', {id: categorie.id}) }}" onClick="return confirm('êtes vous sûr de vouloir supprimer la categorie?')">delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
